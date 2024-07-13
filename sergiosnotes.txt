@@ -28,5 +28,6 @@ every time i want to start working on a new idea, this is teh worlflow ill use
 -   -adds these progress features, (mainly needs to be done or system gets mad at you >:(
     `git branch`
     - tell us branch we are currently on and all the other names of other branches that are available
-
+-   `git diff` 
+    - 
 ))
