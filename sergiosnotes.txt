@@ -1,0 +1,32 @@
+sergios notes 
+# Starting a new feature
+every time i want to start working on a new idea, this is teh worlflow ill use
+- `git checkout main`
+    - switch to looking at the source code aka main branch 
+- `git pull`
+    -downloads the source code 
+- `git checkout -b my-branch-name`
+    - this creates a new branch off of the main branch called my-branch-name
+- write code until you are ready to create a pull request
+    `git status`
+    `git add my-filename.txt
+         (example) git add README 
+    `git commit -m "Describe save file" `
+    while we code on our new branch we want to incrementally save our progress until we are ready to make a pull request, we do that by making commits
+-   ` git push `
+    - new save file that we want to merge into main by creating a pull request and asking for a code review on github
+-   - assign kelly as code reviewer on git hub
+-   - once kelly approves merge our pull request into the main branch 
+-   - start a new idea by starting at the beginning, from the top of the list
+
+
+
+## Helpful commands 
+-   `git status (branch name) (files added in)
+-   -feeds progress-
+    `git add filename`
+-   -adds these progress features, (mainly needs to be done or system gets mad at you >:(
+    `git branch`
+    - tell us branch we are currently on and all the other names of other branches that are available
+
+))
