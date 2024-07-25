@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -23,7 +24,7 @@ func homepageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := PageData{
-		Title:       "About Me",
+		Title:       "Slurp",
 		Name:        "Kelley & Sergio",
 		Description: "A brief description about the team behind Slurp.",
 	}
@@ -34,9 +35,15 @@ func homepageHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func messageHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("You clicked the button")
+	fmt.Fprintln(w, "Hello from the server!")
+}
+
 func main() {
 	//---------------Routers---------------
 	http.HandleFunc("/", homepageHandler)
+	http.HandleFunc("/message", messageHandler)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
 	//---------------Start Server---------------
