@@ -1,0 +1,10 @@
+{{ define "index" }}
+<h1>About {{ .Name }}</h1>
+<p>{{ .Description }}</p>
+
+<div id="div1" class="red">Check styles.css to see my color definition</div>
+<button hx-get="/message" hx-target="#output">Get Message</button>
+<div id="output"></div>
+{{ end }}
+
+
