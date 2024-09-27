@@ -1,0 +1,54 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+
+# MacOS
+.DS_Store
+
+# Temporary files
+tmp/
+temp/
+
+# Compiled files
+dist/
+build/
+out/
+
+# Coverage reports
+coverage/
+
+# Miscellaneous
+*.bak
+*.tmp
+
+# Go-related
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output of the go coverage tool
+*.out
