@@ -9,7 +9,14 @@
     <script src="https://unpkg.com/htmx.org@2.0.1" integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/" crossorigin="anonymous"></script>
 </head>
 <body>
-    {{ template "index" . }}
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/kelley">Kelley</a>
+        <a href="/sergio">Sergio</a>
+    </nav>
+     <!-- Main Page Content -->
+    {{ block "content" . }}{{ end }}
 </body>
 </html>
 {{ end }}
