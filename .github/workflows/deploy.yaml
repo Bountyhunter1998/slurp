@@ -1,0 +1,72 @@
+name: Deploy Go app to EC2
+
+on:
+  push
+    branches:
+      - main  # Trigger deployment on push to main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.22.7' 
+
+    - name: Build Go app
+      run: |
+        go build -o myapp .
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: myapp
+        path: ./myapp
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.EC2_PRIVATE_KEY }}  # This is your EC2 private key
+
+    - name: Download Build Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: myapp
+
+    - name: Deploy to EC2
+      run: |
+        # Remove existing myapp binary if it exists
+        ssh -i /tmp/private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ec2-user@${{ secrets.EC2_PUBLIC_IP }} "rm -f ~/myapp"
+
+        # Copy the compiled Go app to the EC2 instance
+        scp -i /tmp/private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ./myapp ec2-user@${{ secrets.EC2_PUBLIC_IP }}:~/myapp
+
+        # Restart the Go application (assuming you are running the app in the background or as a service)
+        ssh -i /tmp/private_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+          # Stop the existing process
+          pkill -f myapp || true
+
+          # Set permissions to executable
+          chmod +x myapp
+
+          # Start the new app
+          nohup ./myapp > output.log 2>&1 &
+        EOF
+
+    - name: Clean up
+      run: |
+        # Remove the private key from the agent
+        rm -f /tmp/private_key
