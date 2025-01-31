@@ -7,9 +7,9 @@ Why: It's known for its performance, simplicity, and strong concurrency support.
 
 
 
-### [Temple](https://templ.guide/)
-What: Templating engine for Go.
-Why: It simplifies the process of rendering HTML pages dynamically.
+### [Templ](https://templ.guide/)
+What: Go library designed for dynamic, live-reloading templates.
+Why: Help you automatically recompile and reload your templates whenever a change is made to the Go files, without having to manually restart the server.
 
 ### [Tailwind CSS](https://tailwindcss.com/docs/installation)
 What: Utility-first CSS framework for styling.
@@ -31,7 +31,8 @@ Why: It allows you to add AJAX, CSS transitions, WebSockets, and more, directly 
 
 ## How To Install
 1. [Install Go](https://go.dev/dl/)
-2.  Install node.js
+2.  Install Dependencies
+- node.js
 ```bash
 nvm install 22.5.1
 # after install, reinstall global utilities. 
@@ -39,15 +40,20 @@ nvm use 22.5.1
 npm --version
 npm install -g yarn
 ```
+- templ
+```bash
+go get github.com/markbates/templ
+```
+- Tailwindcss
+```bash
+npm install -D tailwindcss
+```
 3. Initialize your go project
 - ```bash
 # initialize your go project
 go mod init myproject
 ```
-4. Install Tailwindcss
-```bash
-npm install -D tailwindcss
-```
+
 
 5. Run your go website
 ```bash
